@@ -35,7 +35,7 @@ public class PedidoItemService {
         item.setPedido(pedido);
         item.setProduto(produto);
         item.setQuantidade(quantidade);
-        item.setPreco_unitario(produto.getValor());
+        item.setValor(produto.getValor());
 
         return pedidoItemRepository.save(item);
     }

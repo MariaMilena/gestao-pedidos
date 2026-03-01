@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "clientes")
@@ -26,6 +27,8 @@ public class Cliente {
 
     @Column(unique = true)
     private String email;
+
+    private LocalDate dataCadastro = LocalDate.now();
 
     @OneToMany(mappedBy = "cliente")
     @JsonIgnore
