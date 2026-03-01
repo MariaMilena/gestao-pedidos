@@ -30,9 +30,6 @@ public class Produto {
     @Column(name = "quantidade_estoque", nullable = false)
     private Integer quantidadeEstoque;
 
-    @Column(name = "desconto", nullable = false)
-    private BigDecimal desconto;
-
     @OneToMany(mappedBy = "produto")
     @JsonIgnore
     private List<PedidoItem> itens;
