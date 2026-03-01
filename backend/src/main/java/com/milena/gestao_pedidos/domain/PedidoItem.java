@@ -20,9 +20,11 @@ public class PedidoItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private BigDecimal preco_unitario;
+    private BigDecimal valor;
 
     private Integer quantidade;
+
+    private BigDecimal desconto;
 
     @ManyToOne
     @JoinColumn(name = "pedido_id", nullable = false)

@@ -2,8 +2,9 @@ CREATE TABLE IF NOT EXISTS public.pedido_itens (
     id SERIAL PRIMARY KEY,
     pedido_id INTEGER NOT NULL,
     produto_id INTEGER NOT NULL,
-    preco_unitario NUMERIC(10,2) NOT NULL CHECK (preco_unitario >= 0),
-    quantidade INTEGER NOT NULL CHECK (quantidade > 0),
+    valor DECIMAL(10,2) NOT NULL,
+    quantidade INTEGER NOT NULL,
+    desconto DECIMAL(10,2),
 
     CONSTRAINT fk_item_pedido
         FOREIGN KEY (pedido_id)
