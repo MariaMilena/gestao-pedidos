@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "pedido_itens")
@@ -28,7 +28,7 @@ public class PedidoItem {
 
     @ManyToOne
     @JoinColumn(name = "pedido_id", nullable = false)
-    @JsonIgnore
+    @JsonBackReference
     private Pedido pedido;
 
     @ManyToOne

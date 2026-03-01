@@ -9,8 +9,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -24,15 +22,13 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate dataPedido;
+    private LocalDate dataPedido = LocalDate.now();
 
     @ManyToOne
-    @JsonBackReference
-    @JsonIgnore
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<PedidoItem> itens;
 }
