@@ -25,10 +25,10 @@ public class PedidoItemService {
 
     public PedidoItem adicionarItem(Long pedidoId, Long produtoId, Integer quantidade) {
 
-        Pedido pedido = pedidoRepository.findById(pedidoId)
+        Pedido pedido = pedidoRepository.buscarPorId(pedidoId)
                 .orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
 
-        Produto produto = produtoRepository.findById(produtoId)
+        Produto produto = produtoRepository.buscarPorId(produtoId)
                 .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
 
         PedidoItem item = new PedidoItem();

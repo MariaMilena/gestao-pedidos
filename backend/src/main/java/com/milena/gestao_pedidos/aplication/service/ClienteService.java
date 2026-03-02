@@ -16,11 +16,11 @@ public class ClienteService {
     }
 
     public List<Cliente> listarTodos() {
-        return clienteRepository.findAll();
+        return clienteRepository.buscarTodosClientes();
     }
 
     public Cliente buscarPorId(Long id) {
-        return clienteRepository.findById(id)
+        return clienteRepository.buscarPorId(id)
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
     }
 
@@ -29,7 +29,7 @@ public class ClienteService {
     }
 
     public void deletar(Long id) {
-        clienteRepository.deleteById(id);
+        clienteRepository.deletar(id);
     }
 }
 

@@ -16,11 +16,11 @@ public class ProdutoService {
     }
 
     public List<Produto> listarTodos() {
-        return produtoRepository.findAll();
+        return produtoRepository.listarTodos();
     }
 
     public Produto buscarPorId(Long id) {
-        return produtoRepository.findById(id)
+        return produtoRepository.buscarPorId(id)
                 .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
     }
 
@@ -29,7 +29,7 @@ public class ProdutoService {
     }
 
     public void deletar(Long id) {
-        produtoRepository.deleteById(id);
+        produtoRepository.deletar(id);
     }
 }
 

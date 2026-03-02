@@ -3,10 +3,10 @@ package com.milena.gestao_pedidos.aplication.service;
 import com.milena.gestao_pedidos.domain.Pedido;
 import com.milena.gestao_pedidos.domain.PedidoItem;
 import com.milena.gestao_pedidos.domain.Produto;
-import com.milena.gestao_pedidos.domain.Cliente; // IMPORT QUE FALTA 1
+import com.milena.gestao_pedidos.domain.Cliente; 
 import com.milena.gestao_pedidos.repository.PedidoRepository;
 import com.milena.gestao_pedidos.repository.ProdutoRepository;
-import com.milena.gestao_pedidos.repository.ClienteRepository; // IMPORT QUE FALTA 2
+import com.milena.gestao_pedidos.repository.ClienteRepository; 
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,9 +17,8 @@ public class PedidoService {
 
     private final PedidoRepository pedidoRepository;
     private final ProdutoRepository produtoRepository;
-    private final ClienteRepository clienteRepository; // DECLARAÇÃO QUE FALTA
+    private final ClienteRepository clienteRepository; 
 
-    // CONSTRUTOR ATUALIZADO (Injeção de dependência)
     public PedidoService(PedidoRepository pedidoRepository, 
                          ProdutoRepository produtoRepository, 
                          ClienteRepository clienteRepository) {
@@ -29,7 +28,7 @@ public class PedidoService {
     }
 
     public List<Pedido> listarTodos() {
-        return pedidoRepository.findAll();
+        return pedidoRepository.listarTodos();
     }
 
     @Transactional
@@ -39,7 +38,7 @@ public class PedidoService {
             throw new RuntimeException("ID do Cliente não enviado!");
         }
 
-        Cliente cliente = clienteRepository.findById(pedido.getCliente().getId())
+        Cliente cliente = clienteRepository.buscarPorId(pedido.getCliente().getId())
             .orElseThrow(() -> new RuntimeException("Cliente inexistente"));
         pedido.setCliente(cliente);
 
@@ -48,7 +47,7 @@ public class PedidoService {
             pedido.getItens().forEach(item -> {
                 item.setPedido(pedido); 
                 
-                Produto produto = produtoRepository.findById(item.getProduto().getId())
+                Produto produto = produtoRepository.buscarPorId(item.getProduto().getId())
                     .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
                 
                 if (produto.getQuantidadeEstoque() < item.getQuantidade()) {
@@ -62,7 +61,8 @@ public class PedidoService {
         return pedidoRepository.save(pedido);
     }
 
+    @Transactional
     public void deletar(Long id) {
-        pedidoRepository.deleteById(id);
+        pedidoRepository.deletarPorId(id);
     }
 }
