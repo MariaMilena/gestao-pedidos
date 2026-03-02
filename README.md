@@ -2,6 +2,10 @@
 
 Desafio técnico desenvolvido para a posição de **Analista de Sistemas**. O projeto é uma aplicação Full Stack para gestão de clientes, produtos e pedidos, com controlo de stock automatizado.
 
+<img width="1852" height="884" alt="image" src="https://github.com/user-attachments/assets/f5d70bfe-20b1-45d3-96f5-6a1a1b040493" />
+<img width="1849" height="880" alt="image" src="https://github.com/user-attachments/assets/9508ef50-f6b1-4817-aed5-034a7a27664c" />
+<img width="1849" height="883" alt="image" src="https://github.com/user-attachments/assets/6b544c85-c2b3-48da-8aeb-d997060e200e" />
+
 ## 🚀 Tecnologias Utilizadas
 
 ### Backend
@@ -43,7 +47,7 @@ mvn clean install
 mvn spring-boot:run
 ```
 
-### 3. Executando o Frontend
+### 4. Executando o Frontend
 ```bash
 cd frontend
 npm install
