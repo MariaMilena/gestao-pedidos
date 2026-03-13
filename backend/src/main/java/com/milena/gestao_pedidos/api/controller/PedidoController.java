@@ -29,5 +29,11 @@ public class PedidoController {
     public ResponseEntity<Pedido> criar(@RequestBody Pedido pedido) {
         return ResponseEntity.ok(pedidoService.criarPedido(pedido));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> excluir(@PathVariable Long id) {
+        pedidoService.deletar(id);
+        return ResponseEntity.noContent().build();
+    }
 }
 

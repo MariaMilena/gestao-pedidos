@@ -17,12 +17,17 @@ const colunas = [
 
 const carregarDados = async () => {
   try {
-    // Usamos o nome exato do import acima
     const res = await ClienteService.listarTodos();
-    clientes.value = res.data;
+    
+    if (res.data.success) {
+      clientes.value = res.data.data;
+    } else {
+      console.error("Erro reportado pelo backend:", res.data.message);
+    }
+    
   } catch (e) { 
     console.error("Erro ao carregar:", e);
-    alert("Erro ao carregar dados. Verifique se o backend está rodando na porta 8081."); 
+    alert("Erro ao carregar dados. Verifique se o backend está rodando."); 
   }
 };
 

@@ -63,6 +63,19 @@ public class PedidoService {
 
     @Transactional
     public void deletar(Long id) {
+        // 1. Buscar o pedido para saber o que tinha dentro dele
+        Pedido pedido = pedidoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
+
+        // 2. Devolver os itens ao estoque
+        for (PedidoItem item : pedido.getItens()) {
+            Produto produto = item.getProduto();
+            // Soma a quantidade que estava no pedido de volta ao estoque
+            produto.setQuantidadeEstoque(produto.getQuantidadeEstoque() + item.getQuantidade());
+            produtoRepository.save(produto);
+        }
+
+        // 3. Deletar o pedido (usando seu método nativo)
         pedidoRepository.deletarPorId(id);
     }
 }

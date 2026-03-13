@@ -1,5 +1,6 @@
 package com.milena.gestao_pedidos.api.controller;
 
+import com.milena.gestao_pedidos.api.extensions.StandardResponse;
 import com.milena.gestao_pedidos.domain.Cliente;
 import com.milena.gestao_pedidos.aplication.service.ClienteService;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +22,8 @@ public class ClienteController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Cliente>> listarTodos() {
-        return ResponseEntity.ok(clienteService.listarTodos());
+    public ResponseEntity<?> listarTodos() {
+        return StandardResponse.success(clienteService.listarTodos());
     }
 
     @GetMapping("/{id}")
